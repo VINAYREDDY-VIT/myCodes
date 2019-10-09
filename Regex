@@ -1,0 +1,39 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.mycompany.practice;
+import java.util.*;
+import java.util.regex.*;
+
+/**
+ *
+ * @author reddy
+ */
+public class vit {
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter Text : ");
+        String str = in.next();
+        Pattern P = Pattern.compile("[A-Z]+");
+        Matcher M = P.matcher(str);
+        Pattern p = Pattern.compile("[a-z]+");
+        Matcher m = p.matcher(str);
+        List<String> arr = new ArrayList<>();
+        while(m.find())
+            arr.add(m.group());
+        while(M.find())
+            arr.add(M.group());
+        String[] out = arr.toArray(new String[arr.size()]);
+        int i,j;
+        for(i=0;i<str.length();i++){
+            char a=str.charAt(i);
+            for(j=0;j<out.length;j++){
+                char b=out[j].charAt(0);
+                if(a==b)
+                    System.out.println(out[j]);
+            }
+        }
+    }
+}
