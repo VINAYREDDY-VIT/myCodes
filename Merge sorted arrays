@@ -1,0 +1,61 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.mycompany.practice;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+/**
+ *
+ * @author reddy
+ */
+public class Mergearray {
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        int n1 = in.nextInt();
+        int i,j=0,k=0;
+        int arr1[]=new int[n1];
+        for(i=0;i<n1;i++)
+            arr1[i]=in.nextInt();
+        Arrays.sort(arr1);
+        int n2 = in.nextInt();
+        int arr2[]=new int[n2];
+        for(i=0;i<n2;i++)
+            arr2[i]=in.nextInt();
+        Arrays.sort(arr2);
+        int n=n1+n2;
+        int arr[] = new int[n];
+        i=0;
+        while(n-->0){
+            if(i<n1 && j<n2){
+                int a = arr1[i];
+                int b = arr2[j];
+                if(a<b){
+                   arr[k]=arr1[i]; 
+                   i++; 
+                }
+                else{
+                    arr[k]=arr2[j];
+                    j++;
+                }
+                k++;
+            }
+            else if(i<n1){
+                arr[k]=arr1[i];
+                k++;
+                i++;
+            }
+            else{
+                arr[k]=arr2[j];
+                k++;
+                j++;
+            }
+        }
+        for(int num:arr){
+            System.out.print(num+" ");
+        }
+    }
+}
