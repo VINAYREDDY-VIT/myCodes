@@ -1,0 +1,62 @@
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		try{
+		    Scanner in = new Scanner(System.in);
+		    int test = in.nextInt();
+		    while(test-->0){
+		        int n = in.nextInt();
+		        int m = in.nextInt();
+		        int arr[] = new int[n];
+		        boolean flag=false;
+		        int i,j;
+		        for(i=0;i<n;i++)
+		        arr[i]=in.nextInt();
+		        List<List<Integer>> subsets = subsetss(arr);
+		        for(List<Integer> ss : subsets){
+		            int total =0;
+		            for(int ele : ss){
+		                total+=ele;
+		            }
+		            if(total==m){
+		                flag= true;
+		            }
+		        }
+		        if(flag){
+		            System.out.println("YES");
+		        }
+		        else
+		        System.out.println("No");
+		    }
+		}
+		catch(Exception e){
+		    return;
+		}
+	}
+	public static List<List<Integer>> subsetss(int[] nums) {
+		List<List<Integer>> list = new ArrayList<>();
+		subsetsHelper(list, new ArrayList<>(), nums, 0);
+		return list;
+	}
+ 
+	private static void subsetsHelper(List<List<Integer>> list , List<Integer> resultList, int [] nums, int start){
+		list.add(new ArrayList<>(resultList));
+		for(int i = start; i < nums.length; i++){
+           // add element
+			resultList.add(nums[i]);
+           // Explore
+			subsetsHelper(list, resultList, nums, i + 1);
+           // remove
+			resultList.remove(resultList.size() - 1);
+		}
+	}
+}
