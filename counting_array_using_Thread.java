@@ -54,6 +54,6 @@ public class arraythread{
         }
         count+=obj1.getValue();
         count+=obj2.getValue();
-        System.out.println(count);
+        System.out.println("Winners : "+count);
     }
 }
