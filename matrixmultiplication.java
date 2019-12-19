@@ -3,25 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package practice;
+//package practice;
 import java.util.*;
 
 /**
  *
  * @author reddy
  */
-class calculate implements Runnable {
+class calculate extends Thread {
     private int[][] a;
     private int[][] b;
-    private int[][] c;
+    private int val=0;
     private int row;
     private int col;
     private int acol;
     private int brow;
-   public calculate(int[][] aa,int[][] bb,int[][] cc,int r,int co,int ac,int br){
+   public calculate(int[][] aa,int[][] bb,int r,int co,int ac,int br){
        a=aa;
        b=bb;
-       c=cc;
        row=r;
        col=co;
        acol=ac;
@@ -30,10 +29,13 @@ class calculate implements Runnable {
    public void run(){
        for(int i=0;i<acol;i++){
            for(int j=0;j<brow;j++){
-               c[row][col]+=a[row][i]*b[j][col];
+               val+=a[row][i]*b[j][col];
            }
        }
    }
+    public int get(){
+        return val;
+    }
 }
 public class matrixmultiplication{
     public static void main(String[] krishna){
@@ -55,17 +57,24 @@ public class matrixmultiplication{
                 b[i][j]=sc.nextInt();
             }
         }
-        int c[][] = new int[ar][bc];
+        calculate list[][] = new calculate[ar][bc];
+        Thread thread[][] = new Thread[ar][bc];
         for(i=0;i<ar;i++){
             for(j=0;j<bc;j++){
-                Runnable obj = new calculate(a,b,c,i,j,ac,br);
+                calculate obj = new calculate(a,b,i,j,ac,br);
                 Thread obj1 = new Thread(obj);
+                list[i][j]=obj;
+                thread[i][j]=obj1;
                 obj1.start();
             }
         }
         for(i=0;i<ar;i++){
             for(j=0;j<bc;j++){
-                System.out.print(c[i][j]+" ");
+                try{
+                    thread[i][j].join();
+                }
+                catch(Exception e){}
+                System.out.print(list[i][j].get()+" ");
             }
             System.out.println();
         }
