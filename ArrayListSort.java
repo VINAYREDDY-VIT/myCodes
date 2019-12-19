@@ -88,6 +88,7 @@ public class ArrayListSort {
             }
         };
         Collections.sort(list, com);
+        System.out.println("Roll No       Name         Average");
         for(Student s : list){
             System.out.println(s.toString());
         }
