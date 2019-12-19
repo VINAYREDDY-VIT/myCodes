@@ -10,7 +10,7 @@ import java.util.Scanner;
  *
  * @author reddy
  */
-class hundreed implements Runnable {
+class hundreed extends Thread {
     private int[] a;
     private int count=0,start,end;
     public hundreed(int arr[],int start,int end){
