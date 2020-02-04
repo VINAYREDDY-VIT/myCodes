@@ -9,10 +9,11 @@ import java.util.regex.*;
 public class Histogramarea {
 
     // Complete the largestRectangle function below.
-    static int largestRectangle(int[] h) {
+    static int largestRectangle(int[] hist) {
         // Create an empty stack. The stack holds indexes of hist[] array 
         // The bars stored in stack are always in increasing order of their 
         // heights. 
+        int n = hist.length;
         Stack<Integer> s = new Stack<>(); 
           
         int max_area = 0; // Initialize max area 
